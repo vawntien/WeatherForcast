@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Weather Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>Dự báo thời tiết</h1>
+    <form method="POST">
+      <input type="text" name="city" placeholder="Nhập tên thành phố..." required>
+      <button type="submit">Xem</button>
+    </form>
+
+    {% if weather %}
+      {% if weather.error %}
+        <p class="error">{{ weather.error }}</p>
+      {% else %}
+        <h2>{{ weather.city }}</h2>
+        <p>🌡 Nhiệt độ: {{ weather.temp }}°C</p>
+        <p>💧 Độ ẩm: {{ weather.humidity }}%</p>
+        <p>🌥 Trạng thái: {{ weather.desc }}</p>
+        <img src="https://openweathermap.org/img/wn/{{ weather.icon }}@2x.png" alt="weather icon">
+      {% endif %}
+    {% endif %}
+  </div>
+</body>
+</html>
