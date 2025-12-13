@@ -1,0 +1,41 @@
+{
+  "name": "WeatherForcast-Codespaces (Flask + Frontend)",
+
+  "image": "mcr.microsoft.com/devcontainers/python:3.11",
+
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "20"
+    },
+    "ghcr.io/devcontainers/features/git:1": {}
+  },
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ritwickdey.LiveServer",
+        "esbenp.prettier-vscode",
+        "github.codespaces"
+      ]
+    }
+  },
+
+  "forwardPorts": [5000, 5500],
+
+  "portsAttributes": {
+    "5000": {
+      "label": "Flask Weather Dashboard",
+      "onAutoForward": "openBrowser"
+    },
+    "5500": {
+      "label": "Static Weather Frontend (Live Server)",
+      "onAutoForward": "notify"
+    }
+  },
+
+  "postCreateCommand": "python -m pip install --upgrade pip && if [ -f weather-dashboard/requirements.txt ]; then pip install -r weather-dashboard/requirements.txt; fi",
+
+  "remoteUser": "vscode"
+}
